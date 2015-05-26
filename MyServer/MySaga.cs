@@ -6,7 +6,7 @@ namespace MyServer
 {
     public class MySaga : Saga<MyData>,
         IAmStartedByMessages<MyCommand>
-    //,IHandleTimeouts<ResponseMarkingTimeout>
+        //,IHandleSagaNotFound
     {
         public override void ConfigureHowToFindSaga()
         {
@@ -15,28 +15,17 @@ namespace MyServer
 
         public void Handle(MyCommand msg)
         {
-            Console.WriteLine("Processing command in saga");
+            Console.WriteLine("Processing command in saga: {0}", Data.Id);
             Data.MessageKey = msg.Key;
 
             var notificationTimestamp = DateTime.UtcNow.AddSeconds(15);
             Data.RecordVersion++;
 
-            //RequestUtcTimeout<ResponseMarkingTimeout>(notificationTimestamp, m =>
-            //{
-            //    m.RecordVersion = Data.RecordVersion;
-            //});
-
-            //RequestTimeout<ResponseMarkingTimeout>(notificationTimestamp, m =>
-            //{
-            //    m.RecordVersion = Data.RecordVersion;
-            //});
-
             Console.WriteLine("Timeout at: {0}", notificationTimestamp);
-            RequestUtcTimeout(notificationTimestamp, Data.RecordVersion.ToString());
-
+            RequestUtcTimeout(notificationTimestamp, Data.RecordVersion.ToString(CultureInfo.InvariantCulture));
         }
 
-        //[Obsolete]
+        [Obsolete]
         public override void Timeout(object state)
         {
             Console.WriteLine("Timeout: {0}", state.GetType());
@@ -64,5 +53,10 @@ namespace MyServer
         //        //doing something here
         //    }
         //}
-    }
+    
+public void Handle(object message)
+{
+ 	throw new NotImplementedException();
+}
+}
 }

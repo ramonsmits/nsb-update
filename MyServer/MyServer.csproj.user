@@ -5,8 +5,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <StartAction>Program</StartAction>
-    <StartProgram>C:\Users\Ramon\src\ramonsmits\nsb-v2\nsb-v2\artifacts\v2\NServiceBus.Host.exe</StartProgram>
-    <StartArguments>NServiceBus.Production</StartArguments>
+    <StartProgram>C:\Users\Ramon\src\ramonsmits\nsb-v2\nsb-v2\artifacts\v3\NServiceBus.Host.exe</StartProgram>
+    <StartArguments>NServiceBus.Lite MyServer.NHibernatePersistence</StartArguments>
     <RemoteDebugEnabled>false</RemoteDebugEnabled>
   </PropertyGroup>
 </Project>

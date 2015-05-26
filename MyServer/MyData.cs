@@ -5,6 +5,7 @@ namespace MyServer
 {
     public class MyData : ISagaEntity
     {
+        [Unique]
         public virtual int MessageKey { get; set; }
         public virtual Guid Id { get; set; }
         public virtual string OriginalMessageId { get; set; }

@@ -8,7 +8,7 @@ namespace MyServer
         public IBus Bus { get; set; }
         public void Run()
         {
-            Console.Title = "V2";
+            Console.Title = "V3";
             Console.WriteLine("Run");
             var cmd = new MyCommand { Key = 1 };
             Bus.SendLocal(cmd, cmd, cmd, cmd);
